@@ -1,0 +1,2 @@
+include ':app', ':api'
+project(':api').projectDir = new File('../TKMAPI/api')

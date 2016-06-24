@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lb_details_description_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/lb_details_description_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_below="@+id/lb_details_description_title" />
+
+    <ScrollView
+        android:id="@+id/scroll_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/event_venue_address"
+        android:layout_below="@+id/lb_details_description_subtitle"
+        android:layout_marginBottom="10dp"
+        android:scrollbarSize="5dp"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/lb_details_description_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+             />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/event_venue_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/event_date"
+        android:text=""
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text=""
+        android:textColor="@color/white" />
+</RelativeLayout>
