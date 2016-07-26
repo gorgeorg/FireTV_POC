@@ -59,10 +59,9 @@ public class YouTubeVideoConfiguration {
         videoInformation = Utils.jsonStringToMap(videoInformationJson);
 
         String streamMap = videoInformation.get("url_encoded_fmt_stream_map");
-        String httpLiveStream = videoInformation.get("hlsvp");
         String adaptiveFormats = videoInformation.get("adaptive_fmts");
 
-        if (streamMap.length() > 0) {
+        if (streamMap != null && streamMap.length() > 0) {
 
             List<String> streamQueries = new ArrayList<>();
             if (streamMap != null) {

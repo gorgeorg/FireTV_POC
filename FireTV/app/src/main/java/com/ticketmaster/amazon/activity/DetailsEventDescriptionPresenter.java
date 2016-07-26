@@ -40,8 +40,8 @@ public class DetailsEventDescriptionPresenter extends Presenter {
     protected void onBindDescription(ViewHolder viewHolder, Object item) {
 
         Event event = (Event) item;
-        Log.d(TAG, event.getName());
         if (event != null) {
+            Log.d(TAG, event.getName());
             viewHolder.getTitle().setText(event.getName());
             //viewHolder.getSubtitle().setText(event.getPleaseNote());
             final String localTime = event.getDates().getStart().getLocalTime();

@@ -61,39 +61,6 @@ public class PromoDiscoveryAPI {
                             try {
                                 // Retrieve root object of response json
                                 SearchEventsResult searchEventsResult = response.body();
-                                Event event = searchEventsResult.getEmbedded().getEvents().get(0);
-
-//                                event.retrieveVideos(
-//                                        10,
-//                                        new VideoModelListener() {
-//                                            @Override
-//                                            public void videosDidBuild() {
-//                                                Log.i(TAG, "videosDidBuild: ");
-//                                            }
-//                                        }
-//                                );
-//                                event.retrieveFlickrImages(
-//                                        1, 10,
-//                                        new PhotoModelListener() {
-//                                            @Override
-//                                            public void photosDidBuild() {
-//                                                Log.i(TAG, "photosDidBuild: ");
-//                                            }
-//                                        }
-//                                );
-//                                event.retrieveITunesMusic(
-//                                        new iTunesItemListener() {
-//                                            @Override
-//                                            public void emptyResultDidReceive() {
-//                                                Log.i(TAG, "emptyResultDidReceive: ");
-//                                            }
-//
-//                                            @Override
-//                                            public void iTunesItemsDidBuild() {
-//                                                Log.i(TAG, "iTunesItemsDidBuild: ");
-//                                            }
-//                                        }
-//                                );
 
                                 Log.i(TAG, "onResponse: success");
                             } catch (Exception e) {

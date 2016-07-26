@@ -15,9 +15,7 @@
 package com.ticketmaster.amazon.fragment;
 
 import android.app.Activity;
-
 import android.media.MediaMetadataRetriever;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v17.leanback.widget.AbstractDetailsDescriptionPresenter;
@@ -56,13 +54,10 @@ import com.ticketmaster.amazon.R;
 import com.ticketmaster.amazon.activity.CardPresenter;
 import com.ticketmaster.amazon.activity.DetailsActivity;
 import com.ticketmaster.amazon.activity.Movie;
-import com.ticketmaster.amazon.activity.MovieList;
 import com.ticketmaster.amazon.util.EventManager;
 import com.ticketmaster.api.discovery.entry.event.Event;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /*
  * Class for video playback with media control
@@ -208,13 +203,7 @@ public class PlaybackOverlayFragment extends android.support.v17.leanback.app.Pl
     }
 
     private int getDuration() {
-        Movie movie = MovieList.list.get(mCurrentItem);
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            mmr.setDataSource(movie.getVideoUrl(), new HashMap<String, String>());
-        } else {
-            mmr.setDataSource(movie.getVideoUrl());
-        }
         String time = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
         long duration = Long.parseLong(time) ;
         return (int) duration;
@@ -286,14 +275,6 @@ public class PlaybackOverlayFragment extends android.support.v17.leanback.app.Pl
     }
 
     private void updatePlaybackRow(int index) {
-        if (mPlaybackControlsRow.getItem() != null) {
-            Movie item = (Movie) mPlaybackControlsRow.getItem();
-            item.setTitle(MovieList.list.get(mCurrentItem).getTitle());
-            item.setStudio(MovieList.list.get(mCurrentItem).getStudio());
-        }
-        if (SHOW_IMAGE) {
-            updateVideoImage(MovieList.list.get(mCurrentItem).getCardImageURI().toString());
-        }
         mRowsAdapter.notifyArrayItemRangeChanged(0, 1);
         mPlaybackControlsRow.setTotalTime(getDuration());
         mPlaybackControlsRow.setCurrentTime(0);
@@ -302,12 +283,8 @@ public class PlaybackOverlayFragment extends android.support.v17.leanback.app.Pl
 
     private void addOtherRows() {
         ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(new CardPresenter());
-//        for (Movie movie : mItems) {
-//            listRowAdapter.add(movie);
-//        }
         HeaderItem header = new HeaderItem(0, getString(R.string.related_events));
         mRowsAdapter.add(new ListRow(header, listRowAdapter));
-
     }
 
     private int getUpdatePeriod() {
@@ -341,22 +318,12 @@ public class PlaybackOverlayFragment extends android.support.v17.leanback.app.Pl
             mCurrentItem = 0;
         }
 
-        if (mPlayPauseAction.getIndex() == PlayPauseAction.PLAY) {
-            mCallback.onFragmentPlayPause(MovieList.list.get(mCurrentItem), 0, false);
-        } else {
-            mCallback.onFragmentPlayPause(MovieList.list.get(mCurrentItem), 0, true);
-        }
         updatePlaybackRow(mCurrentItem);
     }
 
     private void prev() {
         if (--mCurrentItem < 0) {
             mCurrentItem = mItems.size() - 1;
-        }
-        if (mPlayPauseAction.getIndex() == PlayPauseAction.PLAY) {
-            mCallback.onFragmentPlayPause(MovieList.list.get(mCurrentItem), 0, false);
-        } else {
-            mCallback.onFragmentPlayPause(MovieList.list.get(mCurrentItem), 0, true);
         }
         updatePlaybackRow(mCurrentItem);
     }

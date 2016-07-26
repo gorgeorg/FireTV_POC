@@ -44,8 +44,6 @@ public class FlickrImagesTask extends AsyncTask<String, Void, PhotoList> {
 
                 PhotosInterface photosInterface = flickr.getPhotosInterface();
 
-                String[] tags = param.split(" ");
-
                 SearchParameters searchParameters = new SearchParameters();
                 //searchParameters.setTags(tags);
                 final String words = filterStopWords(param);

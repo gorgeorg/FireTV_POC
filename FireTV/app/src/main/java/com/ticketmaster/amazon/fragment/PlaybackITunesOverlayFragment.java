@@ -201,7 +201,6 @@ public class PlaybackITunesOverlayFragment extends android.support.v17.leanback.
         mRowsAdapter = new ArrayObjectAdapter(ps);
 
         addPlaybackControlsRow();
-        addOtherRows();
 
         setAdapter(mRowsAdapter);
     }
@@ -224,7 +223,6 @@ public class PlaybackITunesOverlayFragment extends android.support.v17.leanback.
     }
 
     private int getDuration() {
-        // Movie movie = MovieList.list.get(mCurrentItem);
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         mmr.setDataSource(itunesAudioUrl, new HashMap<String, String>());
         String time = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
@@ -298,11 +296,6 @@ public class PlaybackITunesOverlayFragment extends android.support.v17.leanback.
     }
 
     private void updatePlaybackRow(int index) {
-//        if (mPlaybackControlsRow.getItem() != null) {
-//            iTunesItem item = (iTunesItem) mPlaybackControlsRow.getItem();
-//            item.setTitle(item.getTitle());
-//            item.setStudio(MovieList.list.get(mCurrentItem).getStudio());
-//        }
         if (SHOW_IMAGE) {
             updateVideoImage(itunesThumbUrl);
         }
@@ -312,15 +305,6 @@ public class PlaybackITunesOverlayFragment extends android.support.v17.leanback.
         mPlaybackControlsRow.setBufferedProgress(0);
     }
 
-    private void addOtherRows() {
-        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(new CardPresenter());
-//        for (Movie movie : mItems) {
-//            listRowAdapter.add(movie);
-//        }
-        //HeaderItem header = new HeaderItem(0, getString(R.string.related_events), null);
-        //mRowsAdapter.add(new ListRow(header, listRowAdapter));
-
-    }
 
     private int getUpdatePeriod() {
         if (getView() == null
@@ -342,7 +326,6 @@ public class PlaybackITunesOverlayFragment extends android.support.v17.leanback.
                 mPlaybackControlsRow.setBufferedProgress(currentTime + SIMULATED_BUFFERED_TIME);
 
                 if (totalTime > 0 && totalTime <= currentTime) {
-                    //next();
                     getActivity().finish();
                 }
                 mHandler.postDelayed(this, updatePeriod);

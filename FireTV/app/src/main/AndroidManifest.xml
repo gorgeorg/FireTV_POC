@@ -56,7 +56,6 @@
         <activity
             android:name=".activity.ITunesActivity"
             android:theme="@style/Theme.Leanback" />
-        <activity android:name=".activity.SearchActivity" />
         <activity
             android:name=".activity.LocationActivity"
             android:theme="@style/Theme.Leanback" >

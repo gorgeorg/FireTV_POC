@@ -61,9 +61,6 @@ import com.ticketmaster.api.youtube.YouTubeVideoConfiguration;
 import java.net.URL;
 import java.util.List;
 
-/*
- * Class for video playback with media control
- */
 public class YoutubePlaybackOverlayFragment extends android.support.v17.leanback.app.PlaybackOverlayFragment implements VideoStreamUrlListener {
     private static final String TAG = "YoutubePlaybackOverlay";
 
@@ -219,18 +216,6 @@ public class YoutubePlaybackOverlayFragment extends android.support.v17.leanback
         notifyChanged(mPlayPauseAction);
     }
 
-    private int getDuration() {
-        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-//            mmr.setDataSource(movie.getVideoUrl(), new HashMap<String, String>());
-        } else {
-//            mmr.setDataSource(movie.getVideoUrl());
-        }
-        String time = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
-        long duration = Long.parseLong(time);
-        return (int) duration;
-    }
-
     private void addPlaybackControlsRow() {
         if (SHOW_DETAIL) {
             mPlaybackControlsRow = new PlaybackControlsRow(mSelectedMovie);
@@ -297,16 +282,7 @@ public class YoutubePlaybackOverlayFragment extends android.support.v17.leanback
     }
 
     private void updatePlaybackRow(int index) {
-        if (mPlaybackControlsRow.getItem() != null) {
-//            Movie item = (Movie) mPlaybackControlsRow.getItem();
-//            item.setTitle(mItems.get(mCurrentItem).getTitle());
-//            item.setStudio(mItems.get(mCurrentItem).getStudio());
-        }
-        if (SHOW_IMAGE) {
-//            updateVideoImage(mItems.get(mCurrentItem).getCardImageURI().toString());
-        }
         mRowsAdapter.notifyArrayItemRangeChanged(0, 1);
-        //mPlaybackControlsRow.setTotalTime(getDuration());
         mPlaybackControlsRow.setCurrentTime(0);
         mPlaybackControlsRow.setBufferedProgress(0);
     }

@@ -194,12 +194,9 @@ public class FullWidthEventDetailsOverviewRowPresenter extends RowPresenter {
         void onBind() {
             DetailsOverviewRow row = (DetailsOverviewRow) getRow();
             bindActions(row.getActionsAdapter());
-            //row.addListener(mRowListener);
         }
 
         void onUnbind() {
-            DetailsOverviewRow row = (DetailsOverviewRow) getRow();
-            //row.removeListener(mRowListener);
             sHandler.removeCallbacks(mUpdateDrawableCallback);
         }
 
@@ -559,11 +556,6 @@ public class FullWidthEventDetailsOverviewRowPresenter extends RowPresenter {
     @Override
     protected void onSelectLevelChanged(RowPresenter.ViewHolder holder) {
         super.onSelectLevelChanged(holder);
-        if (getSelectEffectEnabled()) {
-            ViewHolder vh = (ViewHolder) holder;
-//            int dimmedColor = vh.mColorDimmer.getPaint().getColor();
-//            ((ColorDrawable) vh.mOverviewFrame.getForeground().mutate()).setColor(dimmedColor);
-        }
     }
 
     @Override
